@@ -1,0 +1,120 @@
+body {
+    display: grid;
+    margin: 0; 
+    grid-template-areas:
+    "topBar  topBar"
+    "map     barChart"
+    "map   stats"
+    "footer  footer";
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: 1fr 18r 8fr 1fr;
+    
+    width: auto;
+
+    border: solid 5px black;
+}
+
+header {
+    background-color: #0047b3;
+    border-bottom: 5px solid #66ccff;
+    align-items: baseline;
+    
+    grid-area: topBar;
+    
+    display: grid;
+    display: flex;
+    
+}
+
+.mapDiv {
+    grid-area: map;
+    display: grid;
+    grid-template-areas:
+    "searchArea"
+    "mapArea";
+
+    grid-template-rows: 2% 98%;   
+}
+
+
+.map {
+    background-color: #cccccc;;
+    grid-area: mapArea;
+}
+
+.search {
+    background-color: #f2f2f2;
+    grid-area: searchArea;
+}
+
+.barChart {
+    background-color: #f2f2f2;
+    grid-area: barChart;
+
+    border-left: 3px solid black;
+    border-bottom: 3px solid black;
+
+}
+
+.stats {
+    background-color: #f2f2f2;
+    grid-area: stats;
+    border-left: 3px solid black;
+
+}
+
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+.dropdown input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+.dropdown-menu {
+    position: absolute;
+    width: 100%;
+    max-height: 150px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    border-top: none;
+    background-color: #fff;
+    display: none;
+    z-index: 1;
+}
+.dropdown-menu .dropdown-item {
+    padding: 8px;
+    cursor: pointer;
+}
+.dropdown-menu .dropdown-item:hover {
+    background-color: #f0f0f0;
+}
+
+
+footer {
+    background-color: #8c8c8c;
+    grid-area: footer;
+
+
+}
+
+@media (max-width: 768px) {
+    body {
+        grid-template-areas:
+            "topBar"
+            "map"
+            "barChart"
+            "stats"
+            "footer";
+        grid-template-columns: 1fr; /* Single-column layout */
+        grid-template-rows: 1fr;
+        
+        grid-template-rows: auto auto minmax(300px, 1fr) minmax(300px, 1fr) minmax(300px, 1fr) auto; 
+
+        
+        height: 100%;
+    }
+}

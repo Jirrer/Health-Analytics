@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michigan Healthcare Analytics</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/map_styles.css">
+    <link rel="stylesheet" href = "css/chart_styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <script> 
+    $(function(){
+      $("#mapContent").load("html/map.html"); 
+    });
+    </script>
+    <script> 
+        $(function(){
+          $("#chartContent").load("html/chart.html"); 
+    });
+    </script>
+    <script> 
+        $(function(){
+          $("#statsContent").load("html/stats.html"); 
+    });
+    </script>
+    <script> 
+        $(function(){
+          $("#searchContent").load("html/search.html"); 
+    });
+    </script>
+</head>
+<body class>
+    <header>
+        <h1> Michigan Healthcare Analytics</h1>
+        <h1>&nbsp;|&nbsp;</h1>
+        <h3>Health Disparities Amongst Low-Income Households</h3>
+    </header>
+    <div class = "mapDiv">
+        <div class = "map" id = "mapContent"></div>
+        <div class = "search" id = "searchContent"> </div>
+    </div>
+    <div class = "barChart" id = "chartContent"></div>
+    <div class = "stats" id = "statsContent"></div>
+    <footer>
+        <a href="https://data.census.gov">Income Statistics</a>
+        <p></p>
+        <a href="https://www.countyhealthrankings.org/">Health Rankings</a>
+        <p>
+            <a href="https://html5.validator.nu/?doc=">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg" width="50" height="50" alt="Valid HTML 5">
+            </a>
+            <a href="http://jigsaw.w3.org/css-validator/validator?uri=">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg" width="50" height="50" alt="Valid CSS 3">
+            </a>
+        </p>
+    </footer>
+
+</body>
+</html>

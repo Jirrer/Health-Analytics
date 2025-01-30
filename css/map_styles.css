@@ -1,0 +1,521 @@
+.Alcona:hover,
+.Alger:hover,
+.Allegan:hover,
+.Alpena:hover,
+.Antrim:hover,
+.Arenac:hover,
+.Baraga:hover,
+.Barry:hover,
+.Bay:hover,
+.Benzie:hover,
+.Berrien:hover,
+.Branch:hover,
+.Calhoun:hover,
+.Cass:hover,
+.Charlevoix:hover,
+.Cheboygan:hover,
+.Chippewa:hover,
+.Clare:hover,
+.Clinton:hover,
+.Crawford:hover,
+.Delta:hover,
+.Dickinson:hover,
+.Emmet:hover,
+.Genesee:hover,
+.Gladwin:hover,
+.Gogebic:hover,
+.GrandTraverse:hover,
+.Gratiot:hover,
+.Hillsdale:hover,
+.Houghton:hover,
+.Huron:hover,
+.Ingham:hover,
+.Ionia:hover,
+.Iosco:hover,
+.Isabella:hover,
+.Iron:hover,
+.Jackson:hover,
+.Kalamazoo:hover,
+.Kalkaska:hover,
+.Kent:hover,
+.Keweenaw:hover,
+.Lake:hover,
+.Lapeer:hover,
+.Leelanau:hover,
+.Lenawee:hover,
+.Livingston:hover,
+.Luce:hover,
+.Macomb:hover,
+.Marquette:hover,
+.Mackinac:hover,
+.Manistee:hover,
+.Mason:hover,
+.Mecosta:hover,
+.Menominee:hover,
+.Midland:hover,
+.Missaukee:hover,
+.Monroe:hover,
+.Montcalm:hover,
+.Montmorency:hover,
+.Muskegon:hover,
+.Newaygo:hover,
+.Oakland:hover,
+.Oceana:hover,
+.Ogemaw:hover,
+.Ontonagon:hover,
+.Osceola:hover,
+.Oscoda:hover,
+.Otsego:hover,
+.Ottawa:hover,
+.PresqueIsle:hover,
+.Roscommon:hover,
+.Saginaw:hover,
+.Sanilac:hover,
+.Schoolcraft:hover,
+.Shiawassee:hover,
+.St_Clair:hover,
+.St_Joseph:hover,
+.Tuscola:hover,
+.VanBuren:hover,
+.Washtenaw:hover,
+.Wayne:hover,
+.Wexford:hover {
+    stroke: #66ccff;
+    stroke-width: 100; 
+}
+
+
+.Alcona { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+    cursor: pointer;
+}
+
+.Alger { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+
+.Allegan { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Alpena { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Antrim { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Arenac { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Baraga { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Barry { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Bay { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Benzie { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Berrien { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Branch { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Calhoun { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Cass { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Charlevoix { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Cheboygan { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Chippewa { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Clare { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Clinton { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Crawford { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Delta { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Dickinson { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+
+.Eaton { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+
+.Emmet { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Genesee { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Gladwin { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Gogebic { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.GrandTraverse { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Gratiot { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Hillsdale { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Houghton { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Huron { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Ingham { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Ionia { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Iosco { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Isabella { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Iron { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Jackson { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Kalamazoo { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Kalkaska { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Kent { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Keweenaw { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Lake { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Lapeer { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Leelanau { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Lenawee { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Luce { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Livingston { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Mackinac { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+
+.Macomb { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+
+.Manistee { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Mason { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Mecosta { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Menominee { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Midland { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Missaukee { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Monroe { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Montcalm { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Montmorency { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Muskegon { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Newaygo { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Oakland { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+
+.Oceana { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+
+.Ogemaw { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Osceola { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Ottawa { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Ottawa { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.PresqueIsle { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Roscommon { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Saginaw { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Sanilac { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Schoolcraft { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Shiawassee { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.St_Clair { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.St_Joseph { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Tuscola { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.VanBuren { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Washtenaw { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Wayne { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+.Wexford { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+
+.Oscoda { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+
+.Otsego { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+
+.Marquette { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+
+.Ontonagon  { 
+    fill: white; 
+    stroke: black; 
+    stroke-width: 10; 
+}
+
