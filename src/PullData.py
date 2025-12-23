@@ -1,5 +1,6 @@
 import json
 from src.Methods import makeSingleQuery
+from src.Methods import groupByCounty
 
 def pullMedianIncome() -> tuple[bool, dict]:
     query = "SELECT name, year, Median_Income FROM counties ORDER BY name, year"
@@ -13,25 +14,14 @@ def pullMedianIncome() -> tuple[bool, dict]:
 
     return (True, groupedCounties)
 
+def pullHealthRank() -> tuple[bool, dict]:
+    query = "SELECT name, year, health_rank FROM counties ORDER BY name, year;"
 
-def groupByCounty(data: list) -> dict: # refactor
-    output = {}
+    queryStatus, queryResponse = makeSingleQuery(query)
 
-    counties = [i[0] for i in data]
+    if not queryStatus: 
+        return (False, queryResponse)
 
-    for county in counties:
-        if county not in output:
-            output[county] = []
-    
-    for value in data:
-        index = 1
-        currOutput = []
+    groupedCounties = groupByCounty(queryResponse)
 
-        while (index < len(value)):
-            currOutput.append(value[index])
-
-            index += 1
-
-        output[value[0]].append(tuple(currOutput))
-
-    return output
+    return (True, groupedCounties)
