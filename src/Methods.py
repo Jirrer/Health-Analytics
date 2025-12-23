@@ -1,4 +1,5 @@
-import sqlite3
+import sqlite3, requests
+from bs4 import BeautifulSoup
 
 Database_Connection = 'src\\Michigan_Analytics.db'
 
@@ -38,3 +39,10 @@ def groupByCounty(data: list) -> dict: # refactor
         output[value[0]].append(tuple(currOutput))
 
     return output
+
+def getHtmlPage(url: str) -> BeautifulSoup:
+    response = requests.get(url)
+    
+    pageContent = response.text
+
+    return BeautifulSoup(pageContent, 'html.parser')
