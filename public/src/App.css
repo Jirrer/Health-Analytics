@@ -5,11 +5,11 @@ body {
 
 .AppGrid {
   display: grid;
-  grid-template-columns: 1fr 1fr;         
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;         
   grid-template-rows: auto 1fr;           
   grid-template-areas:
-      "TopBar TopBar"
-      "LeftSide RightSide";
+      "TopBar TopBar  TopBar  TopBar  TopBar"
+      "LeftSide LeftSide RightSide  RightSide RightSide";
   height: 98vh;
   margin: 0;
 }
@@ -27,8 +27,7 @@ body {
 
 .LeftSide {
   grid-area: LeftSide;
-  background-color: orange;
-  max-height: 93vh;
+  background-color: darkblue;
 
   display: flex;
   justify-content: center; 
@@ -36,25 +35,26 @@ body {
 }
 
 .Michigan_Map {
-  background-color: darkblue;
+  width: 100%;
+  max-height: 100vh;
 }
 
 .Michigan_Map path {
   fill: white; 
   stroke: black; 
-  stroke-width: 10; 
+  stroke-width: 20; 
   cursor: pointer;
 }
 
 .Michigan_Map path:hover {
   stroke: #66ccff;
-  stroke-width: 100; 
+  stroke-width: 200; 
 }
 
 .RightSide {
   grid-area: RightSide;
   background-color: gray;
-  max-height: 93vh;
+  
 
   display: flex;
   flex-direction: column;
@@ -66,8 +66,13 @@ body {
 }
 
 .chart {
-  background-color: cyan;
+  background-color: white;
   height: 100%;
-  
+}
+
+.LineChart {
+  width: 100%;
+  min-width: 100%
+
 }
 

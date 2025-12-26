@@ -1,5 +1,6 @@
 import React from 'react'
 import MedianIncomeChart from './MedianIncomeChart';
+import HealthRankChart from './HealthRankChart';
 
 
 
@@ -14,9 +15,8 @@ const Charts = ({ selectedRegion  }) => {
     <>
       <div className='label'>{countyLabel}</div>
       <div className='chart'><MedianIncomeChart selectedRegion={selectedRegion} /></div>
-      <div className='chart'>chart 2</div>
-      <div className='chart'>chart 3</div>
-      <div className='chart'>chart 4</div>
+      <div className='chart'><HealthRankChart selectedRegion={selectedRegion} /></div>
+      
     </>
   );
 }

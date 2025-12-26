@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-from PullData import pullMedianIncome
+from PullData import pullMedianIncome, pullHealthRank
 
 app = Flask(__name__)
 CORS(
@@ -24,6 +24,20 @@ def get_median_income():
         return jsonify({'Error': medianIncome_output})
 
     return jsonify(medianIncome_output)
+
+@app.route("/get-health-rank", methods=["POST"]) # AI slop
+def get_health_rank():
+    data = request.json
+    
+    if 'region' not in data:
+        return jsonify({'Error': 'No region provided'})
+    
+    healthRankStatus, healthRankOutcome = pullHealthRank(data['region'])
+    
+    if not healthRankStatus:
+        return jsonify({'Error': healthRankOutcome})
+    
+    return jsonify(healthRankOutcome)
 
 if __name__ == "__main__":
     app.run(debug=True)

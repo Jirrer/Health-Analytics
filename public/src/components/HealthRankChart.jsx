@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import {Chart as ChartJS } from "chart.js/auto";
 import { Bar, Doughnut, Line } from "react-chartjs-2";
 
-const MedianIncomeChart = ({ selectedRegion }) => { // AI slop
+const HealthRankChart = ({ selectedRegion }) => { // AI slop
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
@@ -14,7 +14,7 @@ const MedianIncomeChart = ({ selectedRegion }) => { // AI slop
 
     setData(null);
 
-    fetch(`${BACKEND_URL}/get-median-income`, {
+    fetch(`${BACKEND_URL}/get-health-rank`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -37,21 +37,37 @@ const MedianIncomeChart = ({ selectedRegion }) => { // AI slop
       if (!data) return <div></div>;            
       if (!data[selectedRegion]) return <div>No data found</div>; 
 
-      const countyData = data[selectedRegion];              
+      const countyData = data[selectedRegion];   
+      
+      console.log(data)
       
       return<div className="LineChart">
         <Line
-          data={{
+        data={{
             labels: countyData.map(item => item[0]),
             datasets: [
-              {
-                label: "Median Income",
-                data: countyData.map(item => item[1]), // values
-              },
+            {
+                label: "Health Rank",
+                data: countyData.map(item => item[1]),
+                backgroundColor: "#FF3030",
+                borderColor: "#FF3030",
+            },
             ],
-          }}
-          />
-      </div>;
+        }}
+        options={{
+            responsive: true,
+            plugins: {
+            legend: { position: "top" },
+            },
+            scales: {
+            y: {
+                reverse: true, // <-- this flips the Y-axis
+                title: { display: true, text: "Health Rank" },
+            },
+            },
+        }}
+        />
+    </div>
     };
 
     return (
@@ -65,4 +81,4 @@ const MedianIncomeChart = ({ selectedRegion }) => { // AI slop
     );
   };
 
-export default MedianIncomeChart;
+export default HealthRankChart;

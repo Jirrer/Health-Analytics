@@ -14,8 +14,8 @@ def pullMedianIncome(county) -> tuple[bool, dict]: #fix slq injection
 
     return (True, groupedCounties)
 
-def pullHealthRank() -> tuple[bool, dict]:
-    query = "SELECT name, year, health_rank FROM counties ORDER BY name, year;"
+def pullHealthRank(county) -> tuple[bool, dict]:
+    query = f"SELECT name, year, health_rank FROM counties WHERE name = '{county}' ORDER BY name, year"
 
     queryStatus, queryResponse = makeSingleQuery(query)
 
