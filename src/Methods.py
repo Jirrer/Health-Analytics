@@ -1,7 +1,7 @@
 import sqlite3, requests
 from bs4 import BeautifulSoup
 
-Database_Connection = 'src\\Michigan_Analytics.db'
+Database_Connection = 'Michigan_Analytics.db'
 
 def makeSingleQuery(query) -> tuple[bool, list] | tuple[bool, None]:
     try:

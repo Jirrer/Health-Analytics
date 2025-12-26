@@ -17,14 +17,12 @@ body {
 .TopBar {
   grid-area: TopBar;
   background-color: #0047b3;
-  /* max-height: 5vh; */
-  
-}
+  height: 5vh;
 
-.TopBar header {
-  display: flex;            /* make children align horizontally */
-  align-items: baseline; 
+  display: flex;            
+  align-items: top; 
   padding-left: 10px;
+  
 }
 
 .LeftSide {
@@ -35,13 +33,6 @@ body {
   display: flex;
   justify-content: center; 
   
-}
-
-.RightSide {
-  grid-area: RightSide;
-  background-color: gray;
-  max-height: 93vh;
-
 }
 
 .Michigan_Map {
@@ -59,3 +50,24 @@ body {
   stroke: #66ccff;
   stroke-width: 100; 
 }
+
+.RightSide {
+  grid-area: RightSide;
+  background-color: gray;
+  max-height: 93vh;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  height: 5vh;
+  align-self: center;
+}
+
+.chart {
+  background-color: cyan;
+  height: 100%;
+  
+}
+

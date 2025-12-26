@@ -7,13 +7,18 @@ import Map from './components/Map'
 import Charts from './components/Charts'
 
 function App() {
+  const [selectedRegion, setSelectedRegion] = useState(null);
 
   return (
     <>
     <div className="AppGrid">
-      <div className='TopBar'><TopBar /></div>
-      <div className='LeftSide'><Map /></div>
-      <div className='RightSide'><Charts /></div>
+      <div className="TopBar"><TopBar /></div>
+      <div className="LeftSide">
+        <Map setSelectedRegion={setSelectedRegion} />
+      </div>
+      <div className="RightSide">
+        <Charts selectedRegion={selectedRegion} />
+      </div>
     </div>
     
    
