@@ -2,9 +2,6 @@
 
 Website for graphing health and income trends per county in Michigan
 
-
-
-
 # Backend
 ## Python Source Files
 ### What is their use?
@@ -47,3 +44,9 @@ Methods\.py is used by all three of the main source files and is intended for ab
  * tzdata\==2025.3
  * urllib3\==2.6.2
  * Werkzeug\==3.1.4
+
+# API
+
+# Frontend
+
+## Requirements

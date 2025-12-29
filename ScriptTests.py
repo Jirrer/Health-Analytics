@@ -3,11 +3,11 @@ import src.PullData as PullData
 with open('.txt\\ScriptTests.txt', 'r') as file:
     Selected_Tests = [f for f in file]
 
-def TEST_pullMedianIncome():
-    return PullData.pullMedianIncome()
+def TEST_pullMedianIncome(countyName: str):
+    return PullData.pullMedianIncome(countyName)
 
-def TEST_pullHealthRank():
-    return PullData.pullHealthRank()
+def TEST_pullHealthRank(countyName: str):
+    return PullData.pullHealthRank(countyName)
 
 
 if __name__ == "__main__":
