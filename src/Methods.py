@@ -13,7 +13,22 @@ def makeSingleQuery(query) -> tuple[bool, list] | tuple[bool, None]:
             return (True, results)
         
     except sqlite3.OperationalError as e:
-        return (False, f"Error querying the database - {str(e)}")
+        return (False, f"Error single querying the database - {str(e)}")
+    
+    except Exception as e:
+        return (False, str(e))
+    
+def makeManyQuery(query, data) -> tuple[bool, list] | tuple[bool, None]:
+    try:
+        with sqlite3.connect(Database_Connection) as connection:    
+            cursor = connection.cursor()
+
+            results = cursor.executemany(query, data).fetchall()
+
+            return (True, results)
+        
+    except sqlite3.OperationalError as e:
+        return (False, f"Error many querying the database - {str(e)}")
     
     except Exception as e:
         return (False, str(e))

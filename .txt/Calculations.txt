@@ -1,1 +1,1 @@
-getGiniCoeffient
+giniCoeffient
