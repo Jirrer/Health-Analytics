@@ -1,4 +1,4 @@
-from Methods import getHtmlPage
+from Methods import getHtmlPage, getCensusCountyIncome
 
 Scrap_Dict = {'HealthRank': 'https://www.countyhealthrankings.org/health-data/michigan?year=2023&tab=1'
 
@@ -7,52 +7,82 @@ Scrap_Dict = {'HealthRank': 'https://www.countyhealthrankings.org/health-data/mi
 with open('..\\.txt\\ScrapeData.txt', 'r', newline='') as file:
     Selected_Scraps = [f.replace('\n','').replace('\r','') for f in file]
 
+def lorenzeInfo(year: int) -> dict: # PLEASE REFACTOR
 
-# Total	33995
-#     Less than $10,000	4.6
-#     $10,000 to $14,999	2.5
-#     $15,000 to $24,999	7.1
-#     $25,000 to $34,999	7.2
-#     $35,000 to $49,999	15.5
-#     $50,000 to $74,999	16.8
-#     $75,000 to $99,999	12.3
-#     $100,000 to $149,999	22.2
-#     $150,000 to $199,999	6.4
-#     $200,000 or more	5.4
+    # change truncante to 
+    # balanced = []
+    # running = 0
 
-# data = [
-#     (5000,   1564),   # < $10,000
-#     (12500,   850),   # $10k–14,999
-#     (20000,  2414),   # $15k–24,999
-#     (30000,  2448),   # $25k–34,999
-#     (42500,  5269),   # $35k–49,999
-#     (62500,  5711),   # $50k–74,999
-#     (87500,  4181),   # $75k–99,999
-#     (125000, 7547),   # $100k–149,999
-#     (175000, 2176),   # $150k–199,999
-#     (250000, 1836)    # $200k+ (assumed)
-# ]
+    # for i in range(9):
+    #     v = round(rawBrackets[i])
+    #     balanced.append(v)
+    #     running += v
 
-def lorenzeInfo() -> dict:
+    # balanced.append(int(population - running))
 
-    return {('Clinton', 2022):
-        [
-            (33995, 2870947500),
-            (5000,   1564),
-            (12500,   850), 
-            (20000,  2414), 
-            (30000,  2448), 
-            (42500,  5269),   
-            (62500,  5711),   
-            (87500,  4181),   
-            (125000, 7547),  
-            (175000, 2176),   
-            (250000, 1836)   
+    if int(year) > 2010:
+        countNameIndex = 1
+        populationIndex = 2
+        bracket1 = 4
+        bracket2 = 6
+        bracket3 = 8
+        bracket4 = 10
+        bracket5 = 12
+        bracket6 = 14
+        bracket7 = 16
+        bracket8 = 18
+        bracket9 = 20
+        bracket10 = 22
+
+    else:
+        countNameIndex = 129
+        populationIndex = 1
+        bracket1 = 3
+        bracket2 = 5
+        bracket3 = 7
+        bracket4 = 9
+        bracket5 = 11
+        bracket6 = 13
+        bracket7 = 15
+        bracket8 = 17
+        bracket9 = 19
+        bracket10 = 21
+
+    output = {}
+
+    censusOutcome = getCensusCountyIncome(year)
+
+    incomeRanges = [5000, 12500, 20000, 30000, 42500, 62500, 87500, 125000, 175000, 250000]
+
+    for countyInfo in censusOutcome[1:]:
+        countyName = countyInfo[countNameIndex]
+        population = float(countyInfo[populationIndex])
+
+        rawBrackets = [
+            (float(countyInfo[bracket1]) * 0.01) * population,
+            (float(countyInfo[bracket2]) * 0.01) * population,
+            (float(countyInfo[bracket3]) * 0.01) * population,
+            (float(countyInfo[bracket4]) * 0.01) * population,
+            (float(countyInfo[bracket5]) * 0.01) * population,
+            (float(countyInfo[bracket6]) * 0.01) * population,
+            (float(countyInfo[bracket7]) * 0.01) * population,
+            (float(countyInfo[bracket8]) * 0.01) * population,
+            (float(countyInfo[bracket9]) * 0.01) * population,
+            (float(countyInfo[bracket10]) * 0.01) * population,
         ]
-    }
 
+        bracketsIncome = [(rawBrackets[i] * incomeRanges[i]) for i in range(10)]
 
+        totalIncome = sum(bracketsIncome)
 
+        bracketsOutput = [(incomeRanges[i], int(rawBrackets[i])) for i in range(10)]
+
+        output[(countyName[:-10], year)] = [
+            (int(population), int(totalIncome)),
+            *bracketsOutput
+        ]
+
+    return output
 
 def medianIncome():
     pass
@@ -75,5 +105,6 @@ def healthRank():
 
 if __name__ == "__main__":
     for fileName in Selected_Scraps:
-        print(f"\tStarting scrap {fileName}")
-        print(f"\t\tScrap finished - {globals()[fileName]()}")
+        print(f"Starting scrap {fileName}")
+        userInput = input("Enter needed data: ")
+        print(f"Scrap finished - {globals()[fileName](userInput)}")

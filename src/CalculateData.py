@@ -8,8 +8,12 @@ from Methods import makeManyQuery
 with open('..\\.txt\\Calculations.txt', 'r', newline='') as file:
     Selected_Calculations = [f.replace('\n','').replace('\r','') for f in file]
 
-def giniCoeffient():
-    scrappedData = ScrapeData.lorenzeInfo()
+def giniCoeffient(year: int):
+    scrappedData = ScrapeData.lorenzeInfo(year)
+
+    for x in scrappedData:
+        print(x)
+        print("\n")
 
     counties = []
 
@@ -17,8 +21,7 @@ def giniCoeffient():
         lorenze = calculateLorenze(data)
 
         giniCoeffient = calculateGiniCoeffient(lorenze)
-
-        counties.append((round(giniCoeffient, 3), countyInfo[0], countyInfo[1]))
+        counties.append((round(giniCoeffient, 3), countyInfo[0][:len(countyInfo[0]) - 7], countyInfo[1]))
 
     print('Gini Coeffients')
     for x in counties:
@@ -27,13 +30,15 @@ def giniCoeffient():
     userInput = input("Push To Database? (Type YES): ")
 
     if userInput == "YES":
-        queryStatus, queryOutcome = makeManyQuery('UPDATE counties SET Gini_Coeffient = ? WHERE name = ? AND year = ?', counties)
+        queryStatus, queryOutcome = makeManyQuery("UPDATE counties SET Gini_Coeffient = ? WHERE name = ? AND year = ?", counties)
 
         if not queryStatus:
-            print(queryOutcome)
+            print(f'Error adding to databsae - {queryOutcome}')
+        
+        else:
+            print("Added new Gini Coeffients to database")
             
 def calculateLorenze(data):
-    print(" * Starting Lorenze Calculation")
     plots = []
 
     population, totalIncome = data[0]
@@ -75,8 +80,6 @@ def showLorenze(lorenzePoints):
     plt.show()
 
 def calculateGiniCoeffient(lorenze):
-    print(" * Starting Gini Coeffient Calculation")
-
     area_B = getLorenzeArea(lorenze)
 
     area_A = 0.5 - area_B
@@ -98,4 +101,4 @@ def getLorenzeArea(plots: list) -> int:
 if __name__ == "__main__":
     for fileName in Selected_Calculations:
         print(f"Starting Calculation {fileName}")
-        globals()[fileName]()
+        globals()[fileName](input("Enter needed info: "))
