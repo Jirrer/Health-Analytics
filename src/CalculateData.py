@@ -1,7 +1,7 @@
 import ast
 import matplotlib.pyplot as plt
 import ScrapeData
-from Methods import makeManyQuery
+from Methods import makeManyQuery,prepareCountyName
 
 # DB only supports up to 2010-2022
 
@@ -11,17 +11,13 @@ with open('..\\.txt\\Calculations.txt', 'r', newline='') as file:
 def giniCoeffient(year: int):
     scrappedData = ScrapeData.lorenzeInfo(year)
 
-    for x in scrappedData:
-        print(x)
-        print("\n")
-
     counties = []
 
     for countyInfo, data in scrappedData.items():
         lorenze = calculateLorenze(data)
 
         giniCoeffient = calculateGiniCoeffient(lorenze)
-        counties.append((round(giniCoeffient, 3), countyInfo[0][:len(countyInfo[0]) - 7], countyInfo[1]))
+        counties.append((round(giniCoeffient, 3), prepareCountyName(countyInfo[0][:len(countyInfo[0]) - 7]), countyInfo[1]))
 
     print('Gini Coeffients')
     for x in counties:

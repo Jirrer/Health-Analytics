@@ -23,16 +23,16 @@ def lorenzeInfo(year: int) -> dict: # PLEASE REFACTOR
     if int(year) > 2010:
         countNameIndex = 1
         populationIndex = 2
-        bracket1 = 4
-        bracket2 = 6
-        bracket3 = 8
-        bracket4 = 10
-        bracket5 = 12
-        bracket6 = 14
-        bracket7 = 16
-        bracket8 = 18
-        bracket9 = 20
-        bracket10 = 22
+        bracket1 = 6
+        bracket2 = 10
+        bracket3 = 14
+        bracket4 = 18
+        bracket5 = 22
+        bracket6 = 26
+        bracket7 = 30
+        bracket8 = 34
+        bracket9 = 38
+        bracket10 = 42
 
     else:
         countNameIndex = 129

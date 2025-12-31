@@ -3,6 +3,9 @@ from bs4 import BeautifulSoup
 
 Database_Connection = 'Michigan_Analytics.db'
 
+def prepareCountyName(oldName: str):
+    return oldName.replace('.', '_').replace(' ','')
+
 def getCensusCountyIncome(year: int):
     url = f"https://api.census.gov/data/{year}/acs/acs5/subject?get=group(S1901)&ucgid=pseudo(0400000US26$0500000)"
 
