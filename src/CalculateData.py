@@ -1,14 +1,11 @@
 import ast
-import matplotlib.pyplot as plt
 import ScrapeData
-from Methods import makeManyQuery,prepareCountyName
-
-# DB only supports up to 2010-2022
+from Methods import prepareCountyName, pushCalculations
 
 with open('..\\.txt\\Calculations.txt', 'r', newline='') as file:
     Selected_Calculations = [f.replace('\n','').replace('\r','') for f in file]
 
-def giniCoeffient(year: int):
+def GiniCoeffient(year: int):
     scrappedData = ScrapeData.lorenzeInfo(year)
 
     counties = []
@@ -17,24 +14,16 @@ def giniCoeffient(year: int):
         lorenze = calculateLorenze(data)
 
         giniCoeffient = calculateGiniCoeffient(lorenze)
+
         counties.append((round(giniCoeffient, 3), prepareCountyName(countyInfo[0][:len(countyInfo[0]) - 7]), countyInfo[1]))
 
     print('Gini Coeffients')
     for x in counties:
         print(f'\t{x[1]} - {x[0]}')
 
-    userInput = input("Push To Database? (Type YES): ")
-
-    if userInput == "YES":
-        queryStatus, queryOutcome = makeManyQuery("UPDATE counties SET Gini_Coeffient = ? WHERE name = ? AND year = ?", counties)
-
-        if not queryStatus:
-            print(f'Error adding to databsae - {queryOutcome}')
-        
-        else:
-            print("Added new Gini Coeffients to database")
+    pushCalculations(counties, "UPDATE counties SET Gini_Coeffient = ? WHERE name = ? AND year = ?")
             
-def calculateLorenze(data):
+def calculateLorenze(data) -> list:
     plots = []
 
     population, totalIncome = data[0]
@@ -59,26 +48,8 @@ def calculateLorenze(data):
 
     return plots
 
-def showLorenze(lorenzePoints):
-    x = [p[0] for p in lorenzePoints]
-    y = [p[1] for p in lorenzePoints]
-
-    plt.plot(x, y, drawstyle='steps-post', label='Lorenz Curve', color='blue')
-
-    # Line of equality
-    plt.plot([0,1], [0,1], linestyle='--', color='red', label='Line of Equality')
-
-    plt.xlabel('Cumulative Share of Households')
-    plt.ylabel('Cumulative Share of Income')
-    plt.title('Lorenz Curve')
-    plt.legend()
-    plt.grid(True)
-    plt.show()
-
-def calculateGiniCoeffient(lorenze):
+def calculateGiniCoeffient(lorenze) -> float | int:
     area_B = getLorenzeArea(lorenze)
-
-    area_A = 0.5 - area_B
 
     return 1 - 2 * area_B
 
@@ -95,6 +66,10 @@ def getLorenzeArea(plots: list) -> int:
     return sum(areas)
     
 if __name__ == "__main__":
-    for fileName in Selected_Calculations:
-        print(f"Starting Calculation {fileName}")
-        globals()[fileName](input("Enter needed info: "))
+    for caclulation in Selected_Calculations:
+        print(f"Starting Calculation {caclulation}")
+        
+        try: globals()[caclulation](input("Enter needed info: "))
+        
+        except Exception as e:
+            if e == KeyError: print(f"Calculation '{caclulation}' not found")

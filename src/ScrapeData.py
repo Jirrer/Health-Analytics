@@ -1,4 +1,4 @@
-from Methods import getHtmlPage, getCensusCountyIncome
+from Methods import getHtmlPage, getCensusCountyIncome, balanceList
 
 Scrap_Dict = {'HealthRank': 'https://www.countyhealthrankings.org/health-data/michigan?year=2023&tab=1'
 
@@ -8,74 +8,36 @@ with open('..\\.txt\\ScrapeData.txt', 'r', newline='') as file:
     Selected_Scraps = [f.replace('\n','').replace('\r','') for f in file]
 
 def lorenzeInfo(year: int) -> dict: # PLEASE REFACTOR
+    output = {}
 
-    # change truncante to 
-    # balanced = []
-    # running = 0
+    incomeRanges = [5000, 12500, 20000, 30000, 42500, 62500, 87500, 125000, 175000, 250000]
 
-    # for i in range(9):
-    #     v = round(rawBrackets[i])
-    #     balanced.append(v)
-    #     running += v
-
-    # balanced.append(int(population - running))
+    censusOutcome = getCensusCountyIncome(year)
 
     if int(year) > 2010:
         countNameIndex = 1
         populationIndex = 2
-        bracket1 = 6
-        bracket2 = 10
-        bracket3 = 14
-        bracket4 = 18
-        bracket5 = 22
-        bracket6 = 26
-        bracket7 = 30
-        bracket8 = 34
-        bracket9 = 38
-        bracket10 = 42
+        brackets = [6, 10, 14, 18, 22, 26, 30, 34, 38, 42]
 
     else:
         countNameIndex = 129
         populationIndex = 1
-        bracket1 = 3
-        bracket2 = 5
-        bracket3 = 7
-        bracket4 = 9
-        bracket5 = 11
-        bracket6 = 13
-        bracket7 = 15
-        bracket8 = 17
-        bracket9 = 19
-        bracket10 = 21
-
-    output = {}
-
-    censusOutcome = getCensusCountyIncome(year)
-
-    incomeRanges = [5000, 12500, 20000, 30000, 42500, 62500, 87500, 125000, 175000, 250000]
+        brackets = [3, 5, 7, 9, 11, 13, 15, 17, 19, 21]
 
     for countyInfo in censusOutcome[1:]:
         countyName = countyInfo[countNameIndex]
+
         population = float(countyInfo[populationIndex])
 
-        rawBrackets = [
-            (float(countyInfo[bracket1]) * 0.01) * population,
-            (float(countyInfo[bracket2]) * 0.01) * population,
-            (float(countyInfo[bracket3]) * 0.01) * population,
-            (float(countyInfo[bracket4]) * 0.01) * population,
-            (float(countyInfo[bracket5]) * 0.01) * population,
-            (float(countyInfo[bracket6]) * 0.01) * population,
-            (float(countyInfo[bracket7]) * 0.01) * population,
-            (float(countyInfo[bracket8]) * 0.01) * population,
-            (float(countyInfo[bracket9]) * 0.01) * population,
-            (float(countyInfo[bracket10]) * 0.01) * population,
-        ]
+        rawBrackets = [(float(countyInfo[brackets[index]]) * 0.01) * population for index in range(len(brackets))]
 
-        bracketsIncome = [(rawBrackets[i] * incomeRanges[i]) for i in range(10)]
+        bracketsIncome = [(rawBrackets[i] * incomeRanges[i]) for i in range(len(brackets))]
+
+        balancedBuckets = balanceList(population, rawBrackets)
+
+        bracketsOutput = [(incomeRanges[i], balancedBuckets[i]) for i in range(len(brackets))]
 
         totalIncome = sum(bracketsIncome)
-
-        bracketsOutput = [(incomeRanges[i], int(rawBrackets[i])) for i in range(10)]
 
         output[(countyName[:-10], year)] = [
             (int(population), int(totalIncome)),
