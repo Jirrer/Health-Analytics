@@ -1,10 +1,10 @@
-from Methods import getHtmlPage, getCensusCountyIncome, balanceList
+from src.Methods import getHtmlPage, getCensusCountyIncome, balanceList
 
 Scrap_Dict = {'HealthRank': 'https://www.countyhealthrankings.org/health-data/michigan?year=2023&tab=1'
 
 }
 
-with open('..\\.txt\\ScrapeData.txt', 'r', newline='') as file:
+with open('.txt\\ScrapeData.txt', 'r', newline='') as file:
     Selected_Scraps = [f.replace('\n','').replace('\r','') for f in file]
 
 def lorenzeInfo(year: int) -> dict: # PLEASE REFACTOR

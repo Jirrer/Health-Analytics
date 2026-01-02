@@ -1,12 +1,12 @@
 import ast
-import ScrapeData
-from Methods import prepareCountyName, pushCalculations
+import src.ScrapeData
+from src.Methods import prepareCountyName, pushCalculations
 
-with open('..\\.txt\\Calculations.txt', 'r', newline='') as file:
+with open('.txt\\Calculations.txt', 'r', newline='') as file:
     Selected_Calculations = [f.replace('\n','').replace('\r','') for f in file]
 
 def GiniCoeffient(year: int):
-    scrappedData = ScrapeData.lorenzeInfo(year)
+    scrappedData = src.ScrapeData.lorenzeInfo(year)
 
     counties = []
 

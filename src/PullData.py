@@ -1,5 +1,5 @@
 import json
-from Methods import makeSingleQuery, groupByCounty
+from src.Methods import makeSingleQuery, groupByCounty
 
 def pullMedianIncome(county) -> tuple[bool, dict]: 
     query = f"SELECT name, year, Median_Income FROM counties WHERE name = '{county}' ORDER BY name, year"
