@@ -2,20 +2,20 @@ import sqlite3, requests
 from bs4 import BeautifulSoup
 import matplotlib.pyplot as plt
 
-Database_Connection = 'Michigan_Analytics.db'
+Database_Connection = 'src/Michigan_Analytics.db'
 
 def balanceList(dataTotal: int, unbalencedList: list) -> list:
-    balencedList = []
+    output = []
     running = 0
 
     for i in range(9):
         v = round(unbalencedList[i])
-        balencedList.append(v)
+        output.append(v)
         running += v
 
-    balencedList.append(int(dataTotal - running))
+    output.append(int(dataTotal - running))
 
-    return balanceList
+    return output
 
 def showLorenze(lorenzePoints):
     x = [p[0] for p in lorenzePoints]

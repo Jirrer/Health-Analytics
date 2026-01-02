@@ -1,17 +1,21 @@
 import ast
-import src.ScrapeData
+from src import ScrapeData
 from src.Methods import prepareCountyName, pushCalculations
 
 with open('.txt\\Calculations.txt', 'r', newline='') as file:
     Selected_Calculations = [f.replace('\n','').replace('\r','') for f in file]
 
+CurrentYear = 2025
+
 def GiniCoeffient(year: int):
-    scrappedData = src.ScrapeData.lorenzeInfo(year)
+    if year < 2010 or year > CurrentYear: print('Invalid Year'); return -1
+
+    scrappedData = ScrapeData.lorenzeInfo(year)
 
     counties = []
 
     for countyInfo, data in scrappedData.items():
-        lorenze = calculateLorenze(data)
+        lorenze = calculateLorenzePlots(data)
 
         giniCoeffient = calculateGiniCoeffient(lorenze)
 
@@ -23,7 +27,7 @@ def GiniCoeffient(year: int):
 
     pushCalculations(counties, "UPDATE counties SET Gini_Coeffient = ? WHERE name = ? AND year = ?")
             
-def calculateLorenze(data) -> list:
+def calculateLorenzePlots(data) -> list:
     plots = []
 
     population, totalIncome = data[0]
@@ -57,8 +61,10 @@ def calculateGiniCoeffient(lorenze: list[tuple[float, float]]) -> float:
 
     return giniCoeffient
 
-def getLorenzeArea(plots: list[tuple[float, float]]) -> float:
+def getLorenzeArea(plots: list[tuple[float, float]]) -> float: # Area under the Lorenz Curve
     areas = [None] * (len(plots) - 1)
+
+    if len(areas) <= 1: raise ValueError("Not enough plots provided")
 
     for index in range(len(plots) - 1):
         x_i, y_i = plots[index]
@@ -67,13 +73,27 @@ def getLorenzeArea(plots: list[tuple[float, float]]) -> float:
 
         areas[index] = ((y_i + y_i_1) / 2) * (x_i_1 - x_i) 
 
-    return sum(areas)
+    for i in range(1, len(plots)):
+        if plots[i][0] < plots[i-1][0]:
+            raise ValueError("Plots are not sorted")
+
+    totalArea = sum(areas)
+
+    if totalArea > 1.0 or totalArea < 0.0: raise ValueError("Lorenz Curve must be between 0-1")
+
+    return totalArea
     
 if __name__ == "__main__":
-    for caclulation in Selected_Calculations:
-        print(f"Starting Calculation {caclulation}")
+    for calculation in Selected_Calculations:
+        print(f"Starting Calculation {calculation}")
         
-        try: globals()[caclulation](input("Enter needed info: "))
-        
+        try:
+            func = globals()[calculation]  
+        except KeyError:
+            print(f"Calculation '{calculation}' not found")
+            continue  
+
+        try:
+            func(input("Enter needed info: "))
         except Exception as e:
-            if e == KeyError: print(f"Calculation '{caclulation}' not found")
+            print(f"An error occurred while running '{calculation}': {e}")

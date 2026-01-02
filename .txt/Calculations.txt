@@ -1,1 +1,1 @@
-giniCoeffient
+GiniCoeffient
