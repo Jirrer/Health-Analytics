@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-from PullData import pullMedianIncome, pullHealthRank, pullGiniCoeffient
+from src.PullData import pullMedianIncome, pullHealthRank
 
 app = Flask(__name__)
 CORS(

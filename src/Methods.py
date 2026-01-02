@@ -1,7 +1,48 @@
 import sqlite3, requests
 from bs4 import BeautifulSoup
+import matplotlib.pyplot as plt
 
 Database_Connection = 'Michigan_Analytics.db'
+
+def balanceList(dataTotal: int, unbalencedList: list) -> list:
+    balencedList = []
+    running = 0
+
+    for i in range(9):
+        v = round(unbalencedList[i])
+        balencedList.append(v)
+        running += v
+
+    balencedList.append(int(dataTotal - running))
+
+    return balanceList
+
+def showLorenze(lorenzePoints):
+    x = [p[0] for p in lorenzePoints]
+    y = [p[1] for p in lorenzePoints]
+
+    plt.plot(x, y, drawstyle='steps-post', label='Lorenz Curve', color='blue')
+
+    plt.plot([0,1], [0,1], linestyle='--', color='red', label='Line of Equality')
+
+    plt.xlabel('Cumulative Share of Households')
+    plt.ylabel('Cumulative Share of Income')
+    plt.title('Lorenz Curve')
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
+def pushCalculations(results: list, query: str):
+    userInput = input("Push To Database? (Type YES): ")
+
+    if userInput == "YES":
+        queryStatus, queryOutcome = makeManyQuery(query, results)
+
+        if not queryStatus:
+            print(f'Error adding to databsae - {queryOutcome}')
+        
+        else:
+            print("Added new Gini Coeffients to database")
 
 def prepareCountyName(oldName: str):
     return oldName.replace('.', '_').replace(' ','')

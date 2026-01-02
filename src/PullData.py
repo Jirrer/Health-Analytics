@@ -1,8 +1,7 @@
 import json
-from Methods import makeSingleQuery
-from Methods import groupByCounty
+from src.Methods import makeSingleQuery, groupByCounty
 
-def pullMedianIncome(county) -> tuple[bool, dict]: #fix slq injection
+def pullMedianIncome(county) -> tuple[bool, dict]: 
     query = f"SELECT name, year, Median_Income FROM counties WHERE name = '{county}' ORDER BY name, year"
 
     queryStatus, queryResponse = makeSingleQuery(query)

@@ -8,7 +8,7 @@ Website for graphing health and income trends per county in Michigan
 The Python scripts handle all the data reading and procressing needs required by the API, and are split into three main .py files (with Methods\.py holding shared functionality). 
 
 ### Methods\.py
-Methods\.py is used by all three of the main source files and is intended for abstracting logic for shared methods. Another feature for the source code is the Methods\.py handles all (most) external api calls and database queries. This allows for the three main .py files to focus on the custom data structures and code architecture. 
+Methods\.py is used by all three of the main source files and is intended for abstracting logic for shared methods. Another feature for the source code is the Methods\.py handles all (most) external api calls and database queries. This allows for the three main .py files to focus on the custom data structures and code architecture. Functions within Methods\.py have a stand alone use and should not rely any helper functions, though many may call other functions within Methods\.py. Because of this, there is no function ording layout and the most recently created method simply gets put at the top. 
 
 ### Test\.py
 
