@@ -5,6 +5,7 @@ from src.CalculateData import (
     getLorenzeArea,
 )
 def test_GiniCoeffient():
+    # assert GiniCoeffient()
     pass
 
 def test_calculateLorenze():

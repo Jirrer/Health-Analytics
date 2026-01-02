@@ -48,12 +48,16 @@ def calculateLorenze(data) -> list:
 
     return plots
 
-def calculateGiniCoeffient(lorenze) -> float | int:
+def calculateGiniCoeffient(lorenze: list[tuple[float, float]]) -> float:
     area_B = getLorenzeArea(lorenze)
 
-    return 1 - 2 * area_B
+    giniCoeffient = 1 - 2 * area_B
 
-def getLorenzeArea(plots: list) -> int:
+    if giniCoeffient > 0.5 or giniCoeffient < 0.0: raise ValueError("Gini Coeffient must be between 0-0.5")
+
+    return giniCoeffient
+
+def getLorenzeArea(plots: list[tuple[float, float]]) -> float:
     areas = [None] * (len(plots) - 1)
 
     for index in range(len(plots) - 1):
