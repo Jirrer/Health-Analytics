@@ -25,3 +25,15 @@ def pullHealthRank(county) -> tuple[bool, dict]:
     groupedCounties = groupByCounty(queryResponse)
 
     return (True, groupedCounties)
+
+def pullGiniCoeffient(county) -> tuple[bool, dict]:
+    query = f"SELECT name, year, Gini_Coeffient FROM counties WHERE name = '{county}' ORDER BY name, year"
+
+    queryStatus, queryResponse = makeSingleQuery(query)
+
+    if not queryStatus: 
+        return (False, queryResponse)
+
+    groupedCounties = groupByCounty(queryResponse)
+
+    return (True, groupedCounties)

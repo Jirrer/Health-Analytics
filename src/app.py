@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-from PullData import pullMedianIncome, pullHealthRank
+from PullData import pullMedianIncome, pullHealthRank, pullGiniCoeffient
 
 app = Flask(__name__)
 CORS(
@@ -38,6 +38,20 @@ def get_health_rank():
         return jsonify({'Error': healthRankOutcome})
     
     return jsonify(healthRankOutcome)
+
+@app.route("/get-gini-coeffient", methods=["POST"]) # AI slop
+def get_gini_coeffient():
+    data = request.json
+    
+    if 'region' not in data:
+        return jsonify({'Error': 'No region provided'})
+    
+    giniCoeffient_status, giniCoeffient_output = pullGiniCoeffient(data['region'])
+    
+    if not giniCoeffient_status:
+        return jsonify({'Error': giniCoeffient_output})
+
+    return jsonify(giniCoeffient_output)
 
 if __name__ == "__main__":
     app.run(debug=True)
