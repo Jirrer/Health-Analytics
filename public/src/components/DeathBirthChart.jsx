@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import {Chart as ChartJS } from "chart.js/auto";
 import { Bar, Doughnut, Line } from "react-chartjs-2";
 
-const HealthRankChart = ({ selectedRegion }) => { // AI slop
+const DeathBirthChart = ({ selectedRegion }) => { // AI slop
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const BACKEND_URL =
@@ -17,7 +17,7 @@ const HealthRankChart = ({ selectedRegion }) => { // AI slop
 
     setData(null);
 
-    fetch(`${BACKEND_URL}/get-health-rank`, {
+    fetch(`${BACKEND_URL}/get-deaths-births`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -40,22 +40,24 @@ const HealthRankChart = ({ selectedRegion }) => { // AI slop
       if (!data) return <div></div>;            
       if (!data[selectedRegion]) return <div>No data found</div>; 
 
-      const countyData = data[selectedRegion]; 
-      
-      const cleanedCountyData = countyData.filter(([year, value]) => value != null);
-      
-      console.log(data)
+      const countyData = data[selectedRegion];   
+      const deathsData = countyData.Deaths;
+      const birthsData = countyData.Births;
       
       return<div className="LineChart">
-        <Line
+        <Bar
         data={{
-            labels: cleanedCountyData.map(item => item[0]),
+            labels: deathsData.map(item => item[0]),
             datasets: [
             {
-                label: "Health Rank",
-                data: cleanedCountyData.map(item => item[1]),
-                backgroundColor: "#FF3030",
-                borderColor: "#FF3030",
+                label: "Births",
+                data: birthsData.map(item => item[1]),
+                backgroundColor: "#FDDA0D",
+            },
+            {
+                label: "Deaths",
+                data: deathsData.map(item => item[1]),
+                backgroundColor: "black",
             },
             ],
         }}
@@ -66,13 +68,13 @@ const HealthRankChart = ({ selectedRegion }) => { // AI slop
             },
             scales: {
             y: {
-                reverse: true, // <-- this flips the Y-axis
-                title: { display: true, text: "Health Rank" },
+                reverse: false,
+                title: { display: true, text: "Count" },
             },
             },
         }}
         />
-    </div>
+      </div>;
     };
 
     return (
@@ -86,4 +88,4 @@ const HealthRankChart = ({ selectedRegion }) => { // AI slop
     );
   };
 
-export default HealthRankChart;
+export default DeathBirthChart;

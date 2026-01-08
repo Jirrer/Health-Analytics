@@ -1,9 +1,25 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-from src.PullData import pullMedianIncome, pullHealthRank, pullGiniCoeffient
+from src.PullData import(
+    pullMedianIncome, pullHealthRank, pullGiniCoeffient, pullDeath_Birth
+)
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
+
+@app.route("/get-deaths-births", methods=["POST"])
+def get_deaths_births():
+    data = request.json
+    
+    if 'region' not in data:
+        return jsonify({'Error': 'No region provided'})
+    
+    deathsBirths_status, deathsBirths_output = pullDeath_Birth(data['region'])
+    
+    if not deathsBirths_status:
+        return jsonify({'Error': deathsBirths_output})
+    
+    return jsonify(deathsBirths_output)
 
 @app.route("/get-median-income", methods=["POST"]) # AI slop
 def get_median_income():

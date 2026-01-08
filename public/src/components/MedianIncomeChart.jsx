@@ -41,16 +41,18 @@ const MedianIncomeChart = ({ selectedRegion }) => { // AI slop
       if (!data) return <div></div>;            
       if (!data[selectedRegion]) return <div>No data found</div>; 
 
-      const countyData = data[selectedRegion];              
+      const countyData = data[selectedRegion];  
+      
+      const cleanedCountyData = countyData.filter(([year, value]) => value != null);
       
       return<div className="LineChart">
         <Line
           data={{
-            labels: countyData.map(item => item[0]),
+            labels: cleanedCountyData.map(item => item[0]),
             datasets: [
               {
                 label: "Median Income",
-                data: countyData.map(item => item[1]), // values
+                data: cleanedCountyData.map(item => item[1]), // values
               },
             ],
           }}

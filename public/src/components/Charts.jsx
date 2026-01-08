@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import MedianIncomeChart from './MedianIncomeChart';
 import HealthRankChart from './HealthRankChart';
 import GiniCoeffientChart from './GiniCoeffientChart';
+import DeathBirthChart from './DeathBirthChart';
 
 const chartComponents = {
   medianIncome: MedianIncomeChart,
   healthRank: HealthRankChart,
   giniCoefficient: GiniCoeffientChart,
+  deathBirth: DeathBirthChart,
 };
 
 const Charts = ({ selectedRegion }) => {
@@ -15,11 +17,7 @@ const Charts = ({ selectedRegion }) => {
     : "Select a county to see its data";
 
   // Track selected charts in order
-  const [selectedCharts, setSelectedCharts] = useState([
-    'medianIncome',
-    'healthRank',
-    'giniCoefficient',
-  ]);
+  const [selectedCharts, setSelectedCharts] = useState([]);
 
   // Toggle chart selection
   const toggleChart = (chart) => {
@@ -40,6 +38,26 @@ const Charts = ({ selectedRegion }) => {
 
       {/* Checkboxes */}
       <div style={{ marginBottom: '10px' }}>
+        {/* Check All */}
+      <label>
+        <input
+          type="checkbox"
+          // Checked if all charts are selected
+          checked={
+            selectedCharts.length === Object.keys(chartComponents).length
+          }
+          onChange={() => {
+            if (selectedCharts.length === Object.keys(chartComponents).length) {
+              // If all are selected, uncheck all
+              setSelectedCharts([]);
+            } else {
+              // Otherwise, check all
+              setSelectedCharts(Object.keys(chartComponents));
+            }
+          }}
+        />
+        Check All
+      </label>
         <label>
           <input
             type="checkbox"
@@ -64,6 +82,14 @@ const Charts = ({ selectedRegion }) => {
           />
           Gini Coefficient
         </label>
+        <label>
+          <input
+            type="checkbox"
+            checked={selectedCharts.includes('deathBirth')}
+            onChange={() => toggleChart('deathBirth')}
+          />
+          Deaths & Births
+        </label>{' '}
       </div>
 
       {/* Render charts in the order they were selected */}

@@ -79,7 +79,6 @@ body {
 .RightSide {
   grid-area: RightSide;
   background-color: white;
-  
 
   display: flex;
   flex-direction: column;
@@ -100,4 +99,3 @@ body {
   min-width: 100%
 
 }
-

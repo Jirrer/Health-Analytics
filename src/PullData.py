@@ -20,7 +20,7 @@ def pullDeath_Birth(county) -> tuple[bool, dict]:
 
     birthsCounties = groupByCounty(birthsQueryResponse)
 
-    return (True, {'Deaths': deathsCounties, 'Births': birthsCounties})
+    return (True, {county: {'Deaths': deathsCounties[county], 'Births': birthsCounties[county]}})
 
 pullDeath_Birth('Clinton')
 
