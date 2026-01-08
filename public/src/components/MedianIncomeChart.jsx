@@ -5,7 +5,11 @@ import { Bar, Doughnut, Line } from "react-chartjs-2";
 const MedianIncomeChart = ({ selectedRegion }) => { // AI slop
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
-  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+  const BACKEND_URL =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:5050"     
+    : "/health_analytics_backend";
+
 
   useEffect(() => {
     if (!selectedRegion) return; 
@@ -50,6 +54,20 @@ const MedianIncomeChart = ({ selectedRegion }) => { // AI slop
               },
             ],
           }}
+
+          options={{
+            responsive: true,
+            plugins: {
+            legend: { position: "top" },
+            },
+            scales: {
+            y: {
+                reverse: false,
+                title: { display: true, text: " Median Income" },
+            },
+            },
+        }}
+      
           />
       </div>;
     };

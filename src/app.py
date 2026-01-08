@@ -3,13 +3,7 @@ from flask_cors import CORS
 from src.PullData import pullMedianIncome, pullHealthRank, pullGiniCoeffient
 
 app = Flask(__name__)
-CORS(
-    app,
-    resources={r"/*": {"origins": "http://localhost:5173"}},
-    supports_credentials=True,
-    methods=["GET", "POST", "OPTIONS"],
-    allow_headers=["Content-Type"]
-)
+CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
 
 @app.route("/get-median-income", methods=["POST"]) # AI slop
 def get_median_income():
@@ -54,4 +48,4 @@ def get_gini_coeffient():
     return jsonify(giniCoeffient_output)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5050, debug=True)
