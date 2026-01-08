@@ -1,11 +1,49 @@
 from src.Methods import getHtmlPage, getCensusCountyIncome, balanceList
 
-Scrap_Dict = {'HealthRank': 'https://www.countyhealthrankings.org/health-data/michigan?year=2023&tab=1'
-
-}
+Scrap_Dict = {'HealthRank': 'https://www.countyhealthrankings.org/health-data/michigan?year=2023&tab=1',
+              'DeathNumbers': 'Data\\Deaths.txt',
+            }
 
 with open('.txt\\ScrapeData.txt', 'r', newline='') as file:
     Selected_Scraps = [f.replace('\n','').replace('\r','') for f in file]
+
+
+
+def deaths() -> dict:
+    # To-Do: need to clean up data before proessing
+
+    output = {}
+
+    with open(Scrap_Dict['DeathNumbers']) as file:
+        pageContent = file.read()
+
+    pageRows = pageContent.split("\n")
+
+    years = [y for y in pageRows[0].split()[1:]]
+
+    for row in pageRows[2:]:
+        rowContent = row.split()
+        
+        if not rowContent: continue
+
+        output[rowContent[0]] = []
+
+        for index in range(1, len(rowContent)): 
+            print(years[index - 1], rowContent[index])
+            output[rowContent[0]].append((years[index - 1], rowContent[index]))
+
+    return output
+
+def births() -> list:
+    pass
+
+
+def unenploymentPercentage(year: int) -> dict:
+    output = {}
+
+
+
+    return output
 
 def lorenzeInfo(year: int) -> dict: # PLEASE REFACTOR
     output = {}
@@ -69,4 +107,6 @@ if __name__ == "__main__":
     for fileName in Selected_Scraps:
         print(f"Starting scrap {fileName}")
         userInput = input("Enter needed data: ")
-        print(f"Scrap finished - {globals()[fileName](userInput)}")
+
+        if userInput: print(f"Scrap finished - {globals()[fileName](userInput)}")
+        else: print(f"Scrap finished - {globals()[fileName]()}")
