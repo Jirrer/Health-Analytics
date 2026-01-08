@@ -1,6 +1,8 @@
 import sqlite3, sys
 
-year = int(sys.argv[1])
+years = [1980,1981,1982,1983,1984,1985,1986,1987,1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008]
+
+yearsIter = iter(years)
 
 connection = sqlite3.connect('..\\src\\Michigan_Analytics.db')
 
@@ -39,7 +41,9 @@ def addCounties(counties):
     cursor.close()
 
 if __name__ == "__main__": 
-    main()
+    for x in range(len(years)):
+        year = next(yearsIter)
+        main()
 
     connection.commit()
 

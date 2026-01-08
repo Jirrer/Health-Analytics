@@ -7,6 +7,24 @@ with open('.txt\\Calculations.txt', 'r', newline='') as file:
 
 CurrentYear = 2025
 
+def Deaths():
+    deaths = ScrapeData.getDeaths()
+
+    print('Deaths')
+    for name, info in deaths.items():
+        print(f'{name} - {info}')
+
+    userInput = input("Push To Database? (Type YES): ")
+
+    if userInput != "YES": return
+
+    for name in deaths.keys():
+        databaseList = [(i[1], name, i[0]) for i in deaths[name]]
+        
+        pushCalculations(databaseList, "UPDATE counties SET Deaths = ? WHERE name = ? AND year = ?")
+
+    print("Added new Deaths to database")
+
 def GiniCoeffient(year: int):
     if year < 2010 or year > CurrentYear: print('Invalid Year'); return -1
 
@@ -24,6 +42,10 @@ def GiniCoeffient(year: int):
     print('Gini Coeffients')
     for x in counties:
         print(f'\t{x[1]} - {x[0]}')
+
+    userInput = input("Push To Database? (Type YES): ")
+
+    if userInput != "YES": return
 
     pushCalculations(counties, "UPDATE counties SET Gini_Coeffient = ? WHERE name = ? AND year = ?")
             
@@ -94,6 +116,10 @@ if __name__ == "__main__":
             continue  
 
         try:
-            func(input("Enter needed info: "))
+            userInput = input("Enter needed info: ")
+
+            if userInput: func(input("Enter needed info: "))
+            else: func()
+
         except Exception as e:
             print(f"An error occurred while running '{calculation}': {e}")

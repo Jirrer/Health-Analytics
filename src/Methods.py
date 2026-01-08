@@ -33,16 +33,10 @@ def showLorenze(lorenzePoints):
     plt.show()
 
 def pushCalculations(results: list, query: str):
-    userInput = input("Push To Database? (Type YES): ")
+    queryStatus, queryOutcome = makeManyQuery(query, results)
 
-    if userInput == "YES":
-        queryStatus, queryOutcome = makeManyQuery(query, results)
-
-        if not queryStatus:
-            print(f'Error adding to databsae - {queryOutcome}')
-        
-        else:
-            print("Added new Gini Coeffients to database")
+    if not queryStatus:
+        print(f'Error adding to databsae - {queryOutcome}')
 
 def prepareCountyName(oldName: str):
     return oldName.replace('.', '_').replace(' ','')

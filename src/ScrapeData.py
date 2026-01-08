@@ -9,7 +9,7 @@ with open('.txt\\ScrapeData.txt', 'r', newline='') as file:
 
 
 
-def deaths() -> dict:
+def getDeaths() -> dict:
     # To-Do: need to clean up data before proessing
 
     output = {}
@@ -29,12 +29,11 @@ def deaths() -> dict:
         output[rowContent[0]] = []
 
         for index in range(1, len(rowContent)): 
-            print(years[index - 1], rowContent[index])
             output[rowContent[0]].append((years[index - 1], rowContent[index]))
 
     return output
 
-def births() -> list:
+def getBirths() -> list:
     pass
 
 
