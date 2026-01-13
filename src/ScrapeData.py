@@ -105,12 +105,12 @@ if __name__ == "__main__":
     selectedScrapes = [s for s in sys.argv[1:]]
 
     for scrape in selectedScrapes:
-        print(f'Starting Calculation {scrape}')
+        print(f'Starting Scrape {scrape}')
 
         try:
             func = globals()[scrape]  
         except KeyError:
-            print(f"Calculation '{scrape}' not found")
+            print(f"Scrape '{scrape}' not found")
             continue  
 
         try:
@@ -126,6 +126,6 @@ if __name__ == "__main__":
         except Exception as e:
             print(f"An error occurred while running '{scrape}': {e}")
 
-        print(f'Ended Calculation {scrape}')
+        print(f'Ended Scrape {scrape}')
 
-    print("Ended CalculateData.py")
+    print("Ended ScrapeData.py")
