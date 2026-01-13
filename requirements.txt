@@ -46,7 +46,6 @@ matplotlib==3.10.8
 mysql-connector==2.2.9
 mysql-connector-python==9.2.0
 numpy==2.4.0
-openai==1.72.0
 packaging==25.0
 pandas==2.3.3
 pillow==12.1.0

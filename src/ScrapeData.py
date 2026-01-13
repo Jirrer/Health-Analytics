@@ -1,13 +1,10 @@
+import sys
+from typing import get_type_hints
 from src.Methods import getHtmlPage, getCensusCountyIncome, balanceList
 
 Scrap_Dict = {'HealthRank': 'https://www.countyhealthrankings.org/health-data/michigan?year=2023&tab=1',
               'DeathNumbers': 'Data\\Deaths.txt',
             }
-
-with open('.txt\\ScrapeData.txt', 'r', newline='') as file:
-    Selected_Scraps = [f.replace('\n','').replace('\r','') for f in file]
-
-
 
 def getDeaths() -> dict:
     # To-Do: need to clean up data before proessing
@@ -103,10 +100,32 @@ def healthRank():
     #     print(cell_texts)
 
 if __name__ == "__main__":
-    pass
-    # for fileName in Selected_Scraps:
-    #     print(f"Starting scrap {fileName}")
-    #     userInput = input("Enter needed data: ")
+    print("Starting ScrapeDat.py")
 
-    #     if userInput: print(f"Scrap finished - {globals()[fileName](userInput)}")
-    #     else: print(f"Scrap finished - {globals()[fileName]()}")
+    selectedScrapes = [s for s in sys.argv[1:]]
+
+    for scrape in selectedScrapes:
+        print(f'Starting Calculation {scrape}')
+
+        try:
+            func = globals()[scrape]  
+        except KeyError:
+            print(f"Calculation '{scrape}' not found")
+            continue  
+
+        try:
+            neededInfo = get_type_hints(func)
+
+            givenInfo = []
+
+            for var, hint in neededInfo.items():
+                givenInfo.append(input(f'Enter data for {var} ({hint.__name__}): '))
+            
+            func(*givenInfo)
+
+        except Exception as e:
+            print(f"An error occurred while running '{scrape}': {e}")
+
+        print(f'Ended Calculation {scrape}')
+
+    print("Ended CalculateData.py")
