@@ -15,6 +15,10 @@ ScrapeData is at the forefront of the backend. It is the methods within this fil
 ### CalculateData\.py
 It is CalculateData's job to process and calculate the data that gets sent to the database. After using data pulled form the ScrapeData methods, the raw information is calculated into short numbers that represent rankings, percentages, ratios, etc. These numbers can be chosen to be sent to the database.
 
+Available Calculations
+* GiniCoeffient(year: int)
+* Deaths()
+
 ### PullData\.py
 PullData acts as an abstraction layer for pulling information from the database. It is the methods in this file that the API uses to get its information. 
 

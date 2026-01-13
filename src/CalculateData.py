@@ -1,11 +1,11 @@
-import ast
+import sys
 from src import ScrapeData
-from src.Methods import prepareCountyName, pushCalculations
-
-with open('.txt\\Calculations.txt', 'r', newline='') as file:
-    Selected_Calculations = [f.replace('\n','').replace('\r','') for f in file]
-
-CurrentYear = 2025
+from typing import get_type_hints
+from src.Methods import (
+    prepareCountyName, 
+    pushCalculations,
+    getCurrentYear
+)
 
 def Deaths():
     deaths = ScrapeData.getDeaths()
@@ -26,7 +26,9 @@ def Deaths():
     print("Added new Deaths to database")
 
 def GiniCoeffient(year: int):
-    if year < 2010 or year > CurrentYear: print('Invalid Year'); return -1
+    year = int(year)
+    
+    if year < 2010 or year > getCurrentYear(): print('Invalid Year'); return -1
 
     scrappedData = ScrapeData.lorenzeInfo(year)
 
@@ -106,9 +108,13 @@ def getLorenzeArea(plots: list[tuple[float, float]]) -> float: # Area under the 
     return totalArea
     
 if __name__ == "__main__":
-    for calculation in Selected_Calculations:
-        print(f"Starting Calculation {calculation}")
-        
+    print("Starting CalculateData.py")
+
+    selectedCalculations = [c for c in sys.argv[1:]]
+
+    for calculation in selectedCalculations:
+        print(f'Starting Calculation {calculation}')
+
         try:
             func = globals()[calculation]  
         except KeyError:
@@ -116,10 +122,18 @@ if __name__ == "__main__":
             continue  
 
         try:
-            userInput = input("Enter needed info: ")
+            neededInfo = get_type_hints(func)
 
-            if userInput: func(input("Enter needed info: "))
-            else: func()
+            givenInfo = []
+
+            for var, hint in neededInfo.items():
+                givenInfo.append(input(f'Enter data for {var} ({hint.__name__}): '))
+            
+            func(*givenInfo)
 
         except Exception as e:
             print(f"An error occurred while running '{calculation}': {e}")
+
+        print(f'Ended Calculation {calculation}')
+
+    print("Ended CalculateData.py")

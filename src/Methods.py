@@ -1,8 +1,12 @@
 import sqlite3, requests
 from bs4 import BeautifulSoup
 import matplotlib.pyplot as plt
+from datetime import datetime
 
 Database_Connection = 'src/Michigan_Analytics.db'
+
+def getCurrentYear() -> int:
+    return datetime.now().year
 
 def balanceList(dataTotal: int, unbalencedList: list) -> list:
     output = []

@@ -103,9 +103,10 @@ def healthRank():
     #     print(cell_texts)
 
 if __name__ == "__main__":
-    for fileName in Selected_Scraps:
-        print(f"Starting scrap {fileName}")
-        userInput = input("Enter needed data: ")
+    pass
+    # for fileName in Selected_Scraps:
+    #     print(f"Starting scrap {fileName}")
+    #     userInput = input("Enter needed data: ")
 
-        if userInput: print(f"Scrap finished - {globals()[fileName](userInput)}")
-        else: print(f"Scrap finished - {globals()[fileName]()}")
+    #     if userInput: print(f"Scrap finished - {globals()[fileName](userInput)}")
+    #     else: print(f"Scrap finished - {globals()[fileName]()}")
