@@ -1,2 +1,0 @@
-footer
-make it so search changes color of grid
