@@ -1,4 +1,6 @@
 # Michigan Analytics
+##### Quick Nav Links
+[Backend](#backend) | [API](#api) | [Frontend](#frontend) | [Database](#database) | [Python Requirements](#python-requirements)
 Full stack application for calculating, storing, and showcasing health & income within the counties of the state of the Michigan. Its frontend allows the user to select (either click on the map or search for) a county and the api will send the selected data. The user can decide the number of data points (types of information) for each query.   
 
 # Backend
@@ -22,7 +24,9 @@ Available Calculations
 ### PullData\.py
 PullData acts as an abstraction layer for pulling information from the database. It is the methods in this file that the API uses to get its information. 
 
-## Requirements
+# API
+
+# Python Requirements
  * annotated-types\==0.7.0
  * anyio\==4.9.0
  * asgiref\==3.7.2
@@ -116,9 +120,7 @@ PullData acts as an abstraction layer for pulling information from the database.
  * urllib3\==2.6.2
  * vermin\==1.7.0
  * Werkzeug\==3.1.4
-
-# API
-
 # Frontend
-
-## Requirements
+## React
+## Charts
+# Database
