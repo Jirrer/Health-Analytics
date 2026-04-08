@@ -1,9 +1,10 @@
 # Removed
 env
+*.env
 *.db
 *.txt
 *.csv
-*.xls
+*.xlsx
 
 # Re-added
 !requirements.txt
