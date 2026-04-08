@@ -2,8 +2,12 @@ import sqlite3, requests
 from bs4 import BeautifulSoup
 import matplotlib.pyplot as plt
 from datetime import datetime
+from dotenv import load_dotenv
+import os
 
-Database_Connection = 'src/Michigan_Analytics.db'
+load_dotenv()
+
+Database_Connection = os.getenv('DATABASE')
 
 def getCurrentYear() -> int:
     return datetime.now().year
