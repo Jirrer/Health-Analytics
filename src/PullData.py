@@ -3,6 +3,12 @@ from typing import get_type_hints
 from src.Methods import groupByCounty
 import src.database
 
+def pullInfo(info) -> str | bool:
+    # To-Do: build
+
+
+    return "test from python pull data"
+
 def pullDeath_Birth(county) -> tuple[bool, dict]: 
     deathsQuery = f"SELECT name, year, Deaths FROM counties WHERE name = '{county}' ORDER BY name, year"
 
@@ -23,8 +29,6 @@ def pullDeath_Birth(county) -> tuple[bool, dict]:
     birthsCounties = groupByCounty(birthsQueryResponse)
 
     return (True, {county: {'Deaths': deathsCounties[county], 'Births': birthsCounties[county]}})
-
-pullDeath_Birth('Clinton')
 
 def pullMedianIncome(county) -> tuple[bool, dict]: 
     query = f"SELECT name, year, Median_Income FROM counties WHERE name = '{county}' ORDER BY name, year"

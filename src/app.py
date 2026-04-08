@@ -1,11 +1,25 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from src.PullData import(
-    pullMedianIncome, pullHealthRank, pullGiniCoeffient, pullDeath_Birth
+    pullMedianIncome, pullHealthRank, pullGiniCoeffient, pullDeath_Birth, pullInfo
 )
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
+
+@app.route("/get-info", methods=["post"])
+def get_info():
+    data = request.json
+
+    if 'calculationType' not in data:
+        return jsonify({'Error': "No caclulation provided"})
+    
+    infoOutput = pullInfo(data['calculationType'])
+
+    if not infoOutput:
+        return jsonify({'Error': 'Could not find provided calculation'})
+    
+    return jsonify(infoOutput)
 
 @app.route("/get-deaths-births", methods=["POST"])
 def get_deaths_births():
