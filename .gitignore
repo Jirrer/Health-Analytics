@@ -5,6 +5,9 @@ env
 *.txt
 *.csv
 *.xlsx
+__pycache__/
+*.py[cod]
+.pytest_cache/
 
 # Re-added
 !requirements.txt
