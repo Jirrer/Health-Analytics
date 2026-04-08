@@ -1,15 +1,16 @@
 import sys
 from typing import get_type_hints
-from src.Methods import makeSingleQuery, groupByCounty
+from src.Methods import groupByCounty
+import src.database
 
 def pullDeath_Birth(county) -> tuple[bool, dict]: 
     deathsQuery = f"SELECT name, year, Deaths FROM counties WHERE name = '{county}' ORDER BY name, year"
 
     birthsQuery = f"SELECT name, year, Births FROM counties WHERE name = '{county}' ORDER BY name, year"
 
-    deathsQueryStatus, deathsQueryResponse = makeSingleQuery(deathsQuery)
+    deathsQueryStatus, deathsQueryResponse = src.database.makeSingleQuery(deathsQuery)
 
-    birthsQueryStatus, birthsQueryResponse = makeSingleQuery(birthsQuery)
+    birthsQueryStatus, birthsQueryResponse = src.database.makeSingleQuery(birthsQuery)
 
     if not deathsQueryStatus: 
         return (False, deathsQueryResponse)
@@ -28,7 +29,7 @@ pullDeath_Birth('Clinton')
 def pullMedianIncome(county) -> tuple[bool, dict]: 
     query = f"SELECT name, year, Median_Income FROM counties WHERE name = '{county}' ORDER BY name, year"
 
-    queryStatus, queryResponse = makeSingleQuery(query)
+    queryStatus, queryResponse = src.database.makeSingleQuery(query)
 
     if not queryStatus: 
         return (False, queryResponse)
@@ -40,7 +41,7 @@ def pullMedianIncome(county) -> tuple[bool, dict]:
 def pullHealthRank(county) -> tuple[bool, dict]:
     query = f"SELECT name, year, health_rank FROM counties WHERE name = '{county}' ORDER BY name, year"
 
-    queryStatus, queryResponse = makeSingleQuery(query)
+    queryStatus, queryResponse = src.database.makeSingleQuery(query)
 
     if not queryStatus: 
         return (False, queryResponse)
@@ -52,7 +53,7 @@ def pullHealthRank(county) -> tuple[bool, dict]:
 def pullGiniCoeffient(county) -> tuple[bool, dict]:
     query = f"SELECT name, year, Gini_Coeffient FROM counties WHERE name = '{county}' ORDER BY name, year"
 
-    queryStatus, queryResponse = makeSingleQuery(query)
+    queryStatus, queryResponse = src.database.makeSingleQuery(query)
 
     if not queryStatus: 
         return (False, queryResponse)
