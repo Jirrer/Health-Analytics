@@ -1,2 +1,9 @@
+# Removed
 env
 *.db
+*.txt
+*.csv
+*.xls
+
+# Re-added
+!requirements.txt
