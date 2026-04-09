@@ -5,9 +5,14 @@ import src.database
 
 def pullInfo(info) -> str | bool:
     # To-Do: build
+    query = f"SELECT content FROM info WHERE calculation = '{info}'"
 
+    status, response = src.database.makeSingleQuery(query)
 
-    return "test from python pull data"
+    if not status or not len(response):
+        return False
+
+    return response
 
 def pullDeath_Birth(county) -> tuple[bool, dict]: 
     deathsQuery = f"SELECT name, year, Deaths FROM counties WHERE name = '{county}' ORDER BY name, year"

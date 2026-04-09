@@ -60,6 +60,36 @@ const Charts = ({ selectedRegion }) => {
       .catch((err) => console.error(err));
   }
 
+  function formatInfoText(data) {
+    if (typeof data === 'string') {
+      return data;
+    }
+
+    if (Array.isArray(data)) {
+      return data
+        .map((item) => {
+          if (Array.isArray(item)) {
+            return item.join(' ');
+          }
+
+          if (item && typeof item === 'object') {
+            return Object.values(item).join(' ');
+          }
+
+          return String(item);
+        })
+        .join('\n\n');
+    }
+
+    if (data && typeof data === 'object') {
+      return Object.entries(data)
+        .map(([key, value]) => `${key}: ${value}`)
+        .join('\n');
+    }
+
+    return String(data ?? '');
+  }
+
   return (
     <>
       <div className="label">{countyLabel}</div>
@@ -174,7 +204,7 @@ const Charts = ({ selectedRegion }) => {
               </button>
             </div>
             <pre style={{ marginTop: '12px', whiteSpace: 'pre-wrap' }}>
-{JSON.stringify(infoPopup.data, null, 2)}
+            {formatInfoText(infoPopup.data)}
             </pre>
           </div>
         </div>
