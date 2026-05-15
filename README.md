@@ -1,4 +1,4 @@
-# Michigan Analytics
+# [Michigan Analytics](https://jirrer.github.io/Health-Analytics/)
 ##### Quick Nav Links
 [Backend](#backend) | [API](#api) | [Frontend](#frontend) | [Database](#database) | [Python Requirements](#python-requirements)
 
